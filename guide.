@@ -1,0 +1,18 @@
+import requests
+
+def get_exchange_rate():
+    url = "https://openexchangerates.org/api/latest.json?app_id=YOUR_APP_ID&symbols=USD,UAH"
+    # replace YOUR_APP_ID with your own app ID from Open Exchange Rates
+    
+    response = requests.get(url)
+    
+    if response.status_code == 200:
+        data = response.json()
+        exchange_rate = data['rates']['USD'] / data['rates']['UAH']
+        return exchange_rate
+    else:
+        print(f"Error fetching exchange rate. Status code: {response.status_code}")
+        return None
+You will need to sign up for a free account with Open Exchange Rates to get your own app ID to use in the URL. Once you have your app ID, replace YOUR_APP_ID in the URL with your actual app ID.
+
+The function returns the exchange rate of USD to UAH as a float. If there is an error fetching the exchange rate, the function returns None and prints an error message.
